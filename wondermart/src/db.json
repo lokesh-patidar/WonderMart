@@ -1,0 +1,158 @@
+{
+    "admins": [
+        {
+            "id": 1,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 2,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 3,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 4,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id":5,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 6,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 7,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 8,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 9,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 10,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 11,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 12,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 13,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 14,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 15,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 16,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 17,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 18,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 19,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 20,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 21,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        },
+        {
+            "id": 22,
+            "username": "Lokesh Patidar",
+            "email": "lokesh@gmail.com",
+            "adminID": "xyz",
+            "password": "abc"
+        }
+    ]
+}
