@@ -18,15 +18,15 @@ cartRouter.get("/data", async (req, res) => {
 
 cartRouter.post("/add/:id", async (req, res) => {
     const id = req.params.id;
-    const item = await ProductModel.findById({"_id": id});
+    const item = await ProductModel.findById({ "_id": id });
     console.log(item);
     try {
         const cartItem = new CartModel(item);
-        // await cartItem.save();
-        // res.send("Item added to cart!");
-        res.send(cartItem);
-        console.log(cartItem);
-    } catch (err) {
+        await cartItem.save();
+        res.send("Item added to cart!");
+        // res.send(cartItem);
+    }
+    catch (err) {
         console.log(err);
         res.send({ msg: "something went wrong" });
     }
