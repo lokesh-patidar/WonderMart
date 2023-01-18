@@ -6,7 +6,7 @@ const cartRouter = express.Router();
 
 cartRouter.get("/data", async (req, res) => {
     try {
-        let products = await ProductModel.find();
+        let products = await CartModel.find();
         res.send(products);
     }
     catch (err) {
