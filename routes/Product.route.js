@@ -19,8 +19,7 @@ productRouter.get("/data", async (req, res) => {
 productRouter.post("/addmany", async (req, res) => {
     const payload = req.body;
     try {
-        const product = new ProductModel.insertMany(payload);
-        await product.save();
+        await ProductModel.insertMany(payload);
         res.send("Products added!");
         console.log(product);
     } catch (err) {
