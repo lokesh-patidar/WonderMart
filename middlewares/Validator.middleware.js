@@ -3,7 +3,7 @@ const Validator = (req, res, next) => {
         if (req.url === "users/admin/signup" || req.url === "users/user/signup") {
             if (req.body.username && req.body.email && req.body.password) {
                 next();
-            } 
+            }
             else {
                 res.send({ message: "All the fields are not there" });
             }
@@ -11,4 +11,4 @@ const Validator = (req, res, next) => {
     }
 };
 
-module.exports = {Validator};
+module.exports = { Validator };

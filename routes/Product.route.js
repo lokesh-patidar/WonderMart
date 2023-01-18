@@ -4,7 +4,6 @@ const { ProductModel } = require("../models/Products.model");
 const productRouter = express.Router();
 
 
-
 productRouter.get("/data", async (req, res) => {
     try {
         let products = await ProductModel.find();
@@ -71,7 +70,7 @@ productRouter.delete("/delete/:id", async (req, res) => {
         console.log(err);
         res.send({ msg: "soething went wrong" });
     }
-})
+});
 
 
 module.exports = { productRouter };
