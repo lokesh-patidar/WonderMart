@@ -21,10 +21,18 @@ cartRouter.post("/add/:id", async (req, res) => {
     const item = await ProductModel.findById({ "_id": id });
     
     try {
-        const cartItem = new CartModel(item);
+        const cartItem = new CartModel({
+            day: item.day,
+            brand: item.brand,
+            name: item.name,
+            weight: item.weight,
+            price: item.price,
+            URL_1: item.URL_1,
+            URL2: item.URL2,
+            ImgSrc: item.ImgSrc
+        });
         await cartItem.save();
         res.send("Item added to cart!");
-        // res.send(cartItem);
     }
     catch (err) {
         console.log(err);
