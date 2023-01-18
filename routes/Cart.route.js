@@ -23,7 +23,8 @@ cartRouter.post("/add/:id", async (req, res) => {
     try {
         const cartItem = new CartModel(item);
         // await cartItem.save();
-        res.send("Item added to cart!");
+        // res.send("Item added to cart!");
+        res.send(cartItem);
         console.log(cartItem);
     } catch (err) {
         console.log(err);
