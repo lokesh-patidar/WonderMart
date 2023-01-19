@@ -11,7 +11,8 @@ const productsSchema = mongoose.Schema({
   sasta: String,
   packet: String,
   offers: String,
-  isavailable: Boolean
+  isavailable: Boolean,
+  quantity: Number
 });
 
 const ProductModel = mongoose.model("products", productsSchema);

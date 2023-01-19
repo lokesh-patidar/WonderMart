@@ -11,7 +11,8 @@ const cartSchema = mongoose.Schema({
   sasta: String,
   packet: String,
   offers: String,
-  isavailable: Boolean
+  isavailable: Boolean,
+  quantity: Number
 });
 
 const CartModel = mongoose.model("cartItems", cartSchema);
