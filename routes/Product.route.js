@@ -15,6 +15,7 @@ productRouter.get("/data", async (req, res) => {
     }
 });
 
+// Insert many
 productRouter.post("/addmany", async (req, res) => {
     const payload = req.body;
     try {
@@ -22,6 +23,19 @@ productRouter.post("/addmany", async (req, res) => {
         res.send("Products added!");
         console.log(product);
     } catch (err) {
+        console.log(err);
+        res.send({ msg: "something went wrong" });
+    }
+});
+
+// All product delete
+productRouter.delete("/deletemany", async (req, res) => {
+    const payload = req.body;
+    try {
+        await ProductModel.deleteMany();
+        res.send("All Products deleted!");
+    } 
+    catch (err) {
         console.log(err);
         res.send({ msg: "something went wrong" });
     }
