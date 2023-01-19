@@ -22,14 +22,16 @@ cartRouter.post("/addcartItem/:id", async (req, res) => {
 
     try {
         const cartItem = new CartModel({
-            day: item.day,
             brand: item.brand,
             name: item.name,
             weight: item.weight,
             price: item.price,
-            URL_1: item.URL_1,
-            URL2: item.URL2,
-            ImgSrc: item.ImgSrc
+            mrp: item.mrp,
+            ImgSrc: item.ImgSrc,
+            category: item.category,
+            sasta: item.sasta,
+            packet: item.packet,
+            offers: item.offers
         });
         await cartItem.save();
         res.send("Item added to cart!");
