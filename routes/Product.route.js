@@ -4,16 +4,61 @@ const { ProductModel } = require("../models/Products.model");
 const productRouter = express.Router();
 
 
-productRouter.get("/data", async (req, res) => {
-    try {
-        let products = await ProductModel.find();
-        res.send(products);
+productRouter.get("/", async (req, res) => {
+    const price_low = req.query.price_low;
+    const price_high = req.query.price_high;
+    if (price_low && price_high) {
+        try {
+            let products = await ProductModel.find({ $and: [{ price: { $gt: price_low } }, { price: { $lt: price_high } }] });
+            res.send(products);
+        }
+        catch (err) {
+            console.log(err);
+            res.send({ "err": "Something went wrong" });
+        }
     }
-    catch (err) {
-        res.send("Something went wrong!");
-        console.log(err);
+    else {
+        try {
+            let data = await ProductModel.find();
+            res.send(data);
+        }
+        catch (err) {
+            console.log(err);
+            res.send({ "err": "Something went wrong" });
+        }
     }
 });
+
+
+productRouter.get("/q", async (req, res) => {
+    let query = req.query;
+    try {
+        if(query.sortBy){
+            const sortedData = await ProductModel.find(query).sort({ price: query.sortBy });
+            res.send(sortedData);
+        }else{
+            const data = await ProductModel.find(query);
+            res.send(data);
+        }
+    }
+    catch (err) {
+        console.log(err);
+        res.send({ "err": "Something went wrong" })
+    }
+});
+
+productRouter.get("/sort", async (req, res) => {
+    let query = req.query;
+    try {
+        const data = await ProductModel.find(query);
+        res.send(data);
+    }
+    catch (err) {
+        console.log(err);
+        res.send({ "err": "Something went wrong" })
+    }
+});
+
 
 // Insert many
 productRouter.post("/addmany", async (req, res) => {
@@ -41,8 +86,9 @@ productRouter.delete("/deletemany", async (req, res) => {
 })
 
 
-productRouter.use(ValidationForProducts);
 
+// Validation these operation could only be done by admin only
+productRouter.use(ValidationForProducts);
 
 productRouter.post("/add", async (req, res) => {
     const payload = req.body;
@@ -68,7 +114,7 @@ productRouter.patch("/update/:id", async (req, res) => {
     }
     catch (error) {
         console.log(err);
-        res.send({ msg: "soething went wrong" });
+        res.send({ msg: "something went wrong" });
     }
 });
 
@@ -81,7 +127,7 @@ productRouter.delete("/delete/:id", async (req, res) => {
         res.send("Product Deleted!");
     } catch (error) {
         console.log(err);
-        res.send({ msg: "soething went wrong" });
+        res.send({ msg: "something went wrong" });
     }
 });
 
