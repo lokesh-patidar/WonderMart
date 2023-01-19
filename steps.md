@@ -25,3 +25,6 @@
   - Add cart items: `baseurl` + `/cart/addcartItem/:id`
   - Delete cart item: `baseurl` + `/cart/delete/:id`
   - Quantity update: `baseurl` + `/cart/update/:id`
+  - Get sorted cart items in descending order:-  `baseurl` + `cart/q?sortBy=desc`
+  - Get sorted cart items in ascending order:-  `baseurl` + `cart/q?sortBy=asc`
+  - Get cart items by a range of price:- `baseurl` + `/cart/cartItems?price_low=30&&price_high=70`
