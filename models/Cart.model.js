@@ -10,7 +10,8 @@ const cartSchema = mongoose.Schema({
   category: String,
   sasta: String,
   packet: String,
-  offers: String
+  offers: String,
+  isavailable: Boolean
 });
 
 const CartModel = mongoose.model("cartItems", cartSchema);

@@ -31,7 +31,8 @@ cartRouter.post("/addcartItem/:id", async (req, res) => {
             category: item.category,
             sasta: item.sasta,
             packet: item.packet,
-            offers: item.offers
+            offers: item.offers,
+            isavailable: item.isavailable
         });
         await cartItem.save();
         res.send("Item added to cart!");

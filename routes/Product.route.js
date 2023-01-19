@@ -30,7 +30,6 @@ productRouter.post("/addmany", async (req, res) => {
 
 // All product delete
 productRouter.delete("/deletemany", async (req, res) => {
-    const payload = req.body;
     try {
         await ProductModel.deleteMany();
         res.send("All Products deleted!");

@@ -10,7 +10,8 @@ const productsSchema = mongoose.Schema({
   category: String,
   sasta: String,
   packet: String,
-  offers: String
+  offers: String,
+  isavailable: Boolean
 });
 
 const ProductModel = mongoose.model("products", productsSchema);
