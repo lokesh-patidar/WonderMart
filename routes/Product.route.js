@@ -30,6 +30,7 @@ productRouter.get("/", async (req, res) => {
 });
 
 
+// Sorting Asc or Desc
 productRouter.get("/q", async (req, res) => {
     let query = req.query;
     try {

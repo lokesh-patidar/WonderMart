@@ -7,7 +7,6 @@ const { addAdminId } = require("../middlewares/addAdminId.middleware");
 require('dotenv').config();
 
 const userRouter = express.Router();
-
 userRouter.use(addAdminId);
 
 userRouter.post("/login", async (req, res) => {
@@ -64,7 +63,6 @@ userRouter.get("/", async (req, res) => {
         console.log(err);
     }
 });
-
 
 
 userRouter.delete("/deletemany", async (req, res) => {
@@ -130,7 +128,6 @@ userRouter.post("/admin/signup", async (req, res) => {
         else {
             res.send("Admin already registered!");
         }
-
     }
     catch (err) {
         res.send("Admin Registration Failed!");

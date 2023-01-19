@@ -1,5 +1,7 @@
-## Base url:-  `https://rich-red-indri-tie.cyclic.app`
-# Product end point:-
+# Steps and End-points:-
+
+### Base url:-  `https://rich-red-indri-tie.cyclic.app`
+### Product end point:-
   - Add product:- `baseurl` + `/products/add`
   - Update product:- `baseurl` + `/products/update/:id`
   - Delete product:- `baseurl` + `/products/delete/:id`
@@ -10,14 +12,16 @@
   - Get sorted products in ascending order:-  `baseurl` + `products/q?sortBy=asc`
 
 
-# User endpoints:-
+### User endpoints:-
   - Sign Up for admin:- `baseurl` + `/users/admin/signup`
   - Sign Up for user:- `baseurl` + `/users/user/signup`
+  - Login:- `baseurl` + `/users/login`
   - Update user:- `baseurl` + `/users/update/:id`
   - Update user:- `baseurl` + `/users/delete/:id`
   - Get users (all users and admin):- `base url` + `/users/`
 
-# Cart endpoint:- 
+### Cart endpoint:- 
   - Get cart items: `baseurl` + `/cart/cartItems`
   - Add cart items: `baseurl` + `/cart/addcartItem/:id`
   - Delete cart item: `baseurl` + `/cart/delete/:id`
+  - Quantity update: `baseurl` + `/cart/update/:id`

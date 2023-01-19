@@ -57,5 +57,19 @@ cartRouter.delete("/delete/:id", async (req, res) => {
     }
 });
 
+cartRouter.patch("/update/:id", async (req,res) => {
+    const payload = req.body;
+    const id = req.params.id;
+
+    try {
+        await CartModel.findByIdAndUpdate({ "_id": id }, payload);
+        res.send("Quantity Updated!");
+    }
+    catch (error) {
+        console.log(err);
+        res.send({ msg: "something went wrong" });
+    }
+})
+
 
 module.exports = { cartRouter };
