@@ -47,18 +47,6 @@ productRouter.get("/q", async (req, res) => {
     }
 });
 
-productRouter.get("/sort", async (req, res) => {
-    let query = req.query;
-    try {
-        const data = await ProductModel.find(query);
-        res.send(data);
-    }
-    catch (err) {
-        console.log(err);
-        res.send({ "err": "Something went wrong" })
-    }
-});
-
 
 // Insert many
 productRouter.post("/addmany", async (req, res) => {
