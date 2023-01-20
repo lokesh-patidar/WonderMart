@@ -1,6 +1,5 @@
 # Steps and End-points:-
 
-### Base url:-  `https://rich-red-indri-tie.cyclic.app`
 ### Product end point:-
   - Add product:- `baseurl` + `/products/add`
   - Update product:- `baseurl` + `/products/update/:id`
