@@ -33,7 +33,7 @@ productRouter.get("/", async (req, res) => {
 productRouter.get("/getById/:id", async (req, res) => {
     let id = req.params.id;
     try {
-        const productItem = await ProductModel.findById({"_id": id});
+        const productItem = await ProductModel.findById({ "_id": id });
         res.send(productItem);
     }
     catch (err) {
@@ -47,10 +47,10 @@ productRouter.get("/getById/:id", async (req, res) => {
 productRouter.get("/q", async (req, res) => {
     let query = req.query;
     try {
-        if(query.sortBy){
+        if (query.sortBy) {
             const sortedData = await ProductModel.find(query).sort({ price: query.sortBy });
             res.send(sortedData);
-        }else{
+        } else {
             const data = await ProductModel.find(query);
             res.send(data);
         }
@@ -62,10 +62,8 @@ productRouter.get("/q", async (req, res) => {
 });
 
 
-
 // Validation these operation could only be done by admin only
 productRouter.use(ValidationForProducts);
-
 
 
 // Insert many
@@ -81,18 +79,18 @@ productRouter.post("/addmany", async (req, res) => {
     }
 });
 
+
 // All product delete
 productRouter.delete("/deletemany", async (req, res) => {
     try {
         await ProductModel.deleteMany();
         res.send("All Products deleted!");
-    } 
+    }
     catch (err) {
         console.log(err);
         res.send({ msg: "something went wrong" });
     }
-})
-
+});
 
 
 productRouter.post("/add", async (req, res) => {
