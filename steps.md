@@ -19,6 +19,7 @@
   - Update user:- `baseurl` + `/users/update/:id`
   - Update user:- `baseurl` + `/users/delete/:id`
   - Get users (all users and admin):- `base url` + `/users/`
+  - Get profile of user by userkey which will be send to front end while login process along with token :- `userurl` + `users/profile/:userKey`
 
 ### Cart endpoint:- 
   - Get cart items: `baseurl` + `/cart/cartItems`

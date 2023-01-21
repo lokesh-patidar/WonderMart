@@ -9,6 +9,20 @@ require('dotenv').config();
 const userRouter = express.Router();
 userRouter.use(addAdminId);
 
+userRouter.get("/profile/:userKey", async (req, res) => {
+    const { userKey } = req.params;
+    const token = req.headers["authorization"].split(" ")[0];
+    console.log("Userkey:", userKey);
+    try{
+        const singleUser = await UserModel.findById({"_id":userKey});
+        res.send(singleUser);
+    }
+    catch(err){
+        res.send("Something went wrong!");
+        console.log(err);
+    }
+});
+
 userRouter.post("/login", async (req, res) => {
     const { email, password } = req.body;
     try {
@@ -20,7 +34,7 @@ userRouter.post("/login", async (req, res) => {
 
                     if (result) {
                         const token = jwt.sign({ userID: user._id, adminID: user.adminID }, process.env.key);
-                        res.send({ msg: "Admin Login Successful", token });
+                        res.send({ msg: "Admin Login Successful","userKey": user._id, token });
                     }
                     else {
                         res.send("Wrong admin credential!");
@@ -32,7 +46,7 @@ userRouter.post("/login", async (req, res) => {
 
                     if (result) {
                         const token = jwt.sign({ userID: user._id }, process.env.key);
-                        res.send({ msg: "User Login Successful", token });
+                        res.send({ msg: "User Login Successful","userKey": user._id, token });
                     }
                     else {
                         res.send("Wrong user credential!");
