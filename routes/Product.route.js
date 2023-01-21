@@ -29,6 +29,19 @@ productRouter.get("/", async (req, res) => {
     }
 });
 
+// get by ID
+productRouter.get("/getById/:id", async (req, res) => {
+    let id = req.params.id;
+    try {
+        const productItem = await ProductModel.findById({"_id": id});
+        res.send(productItem);
+    }
+    catch (err) {
+        console.log(err);
+        res.send({ "err": "Something went wrong" })
+    }
+});
+
 
 // Sorting Asc or Desc
 productRouter.get("/q", async (req, res) => {
@@ -47,6 +60,12 @@ productRouter.get("/q", async (req, res) => {
         res.send({ "err": "Something went wrong" })
     }
 });
+
+
+
+// Validation these operation could only be done by admin only
+productRouter.use(ValidationForProducts);
+
 
 
 // Insert many
@@ -75,9 +94,6 @@ productRouter.delete("/deletemany", async (req, res) => {
 })
 
 
-
-// Validation these operation could only be done by admin only
-productRouter.use(ValidationForProducts);
 
 productRouter.post("/add", async (req, res) => {
     const payload = req.body;

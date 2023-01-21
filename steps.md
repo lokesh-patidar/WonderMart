@@ -9,6 +9,7 @@
   - Get products by any query:- `baseurl` + `/products/q?brand=Milky Mist`
   - Get sorted products in descending order:-  `baseurl` + `products/q?sortBy=desc`
   - Get sorted products in ascending order:-  `baseurl` + `products/q?sortBy=asc`
+  - Get products by Id: `baseurl` + `products/getById/:id`
 
 
 ### User endpoints:-
