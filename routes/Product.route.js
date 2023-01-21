@@ -1,4 +1,5 @@
 const express = require("express");
+const { AuthValidator } = require("../middlewares/Auth.middleware");
 const { ValidationForProducts } = require("../middlewares/ValidationForProducts");
 const { ProductModel } = require("../models/Products.model");
 const productRouter = express.Router();
@@ -28,6 +29,11 @@ productRouter.get("/", async (req, res) => {
         }
     }
 });
+
+
+
+// validation 
+productRouter.use(AuthValidator);
 
 // get by ID
 productRouter.get("/getById/:id", async (req, res) => {
