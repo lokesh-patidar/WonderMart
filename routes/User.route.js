@@ -24,7 +24,7 @@ userRouter.post("/login", async (req, res) => {
 
                     if (result) {
                         const token = jwt.sign({ userID: user._id, adminID: user.adminID }, process.env.key);
-                        res.send({ msg: "Admin Login Successful", "userKey": user._id, token });
+                        res.send({ msg: "Admin Login Successful","adminID": user.adminID, "userKey": user._id, token });
                     }
                     else {
                         res.send("Wrong admin credential!");
