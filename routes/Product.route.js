@@ -73,7 +73,7 @@ productRouter.get("/q", async (req, res) => {
             const sortedData = await ProductModel.find(query).sort({ price: query.sortBy });
             res.send(sortedData);
         }
-        else if(query.category === ""){
+        else if(query.category === 1){
             const data = await ProductModel.find(query);
             res.send(data);
         }
