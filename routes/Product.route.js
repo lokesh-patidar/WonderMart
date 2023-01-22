@@ -31,8 +31,7 @@ productRouter.get("/", async (req, res) => {
 });
 
 
-
-// validation 
+// validate users can do these operations only
 productRouter.use(AuthValidator);
 
 // get by ID

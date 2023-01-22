@@ -2,7 +2,6 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { UserModel } = require("../models/user.model");
-const { Validator } = require("../middlewares/Validator.middleware");
 const { addAdminId } = require("../middlewares/addAdminId.middleware");
 const { AuthValidator } = require("../middlewares/Auth.middleware");
 const { ValidationForProducts } = require("../middlewares/ValidationForProducts");
@@ -24,7 +23,12 @@ userRouter.post("/login", async (req, res) => {
 
                     if (result) {
                         const token = jwt.sign({ userID: user._id, adminID: user.adminID }, process.env.key);
-                        res.send({ msg: "Admin Login Successful","adminID": user.adminID, "userKey": user._id, token });
+                        res.send({ 
+                            message: "Admin Login Successful",
+                            adminID: user.adminID, 
+                            userKey: user._id, 
+                            token 
+                        });
                     }
                     else {
                         res.send("Wrong admin credential!");
@@ -36,7 +40,11 @@ userRouter.post("/login", async (req, res) => {
 
                     if (result) {
                         const token = jwt.sign({ userID: user._id }, process.env.key);
-                        res.send({ msg: "User Login Successful", "userKey": user._id, token });
+                        res.send({ 
+                            message: "User Login Successful", 
+                            userKey: user._id, 
+                            token 
+                        });
                     }
                     else {
                         res.send("Wrong user credential!");
@@ -54,20 +62,6 @@ userRouter.post("/login", async (req, res) => {
     }
 });
 
-
-userRouter.get("/", async (req, res) => {
-    try {
-        let user = await UserModel.find();
-        res.send(user);
-        console.log("data is there");
-    }
-    catch (err) {
-        res.send("Something went wrong!");
-        console.log(err);
-    }
-});
-
-userRouter.use(Validator);
 
 userRouter.post("/admin/signup", async (req, res) => {
     const { username, email, password, adminID } = req.body;
@@ -129,9 +123,8 @@ userRouter.post("/user/signup", async (req, res) => {
 });
 
 
+// validation for users to get their profile only
 userRouter.use(AuthValidator);
-userRouter.use(ValidationForProducts);
-
 
 userRouter.get("/profile/:userKey", async (req, res) => {
     const { userKey } = req.params;
@@ -146,6 +139,23 @@ userRouter.get("/profile/:userKey", async (req, res) => {
         console.log(err);
     }
 });
+
+
+// After this validation only admin can perform actions
+userRouter.use(ValidationForProducts);
+
+userRouter.get("/", async (req, res) => {
+    try {
+        let user = await UserModel.find();
+        res.send(user);
+        console.log("data is there");
+    }
+    catch (err) {
+        res.send("Something went wrong!");
+        console.log(err);
+    }
+});
+
 
 userRouter.delete("/deletemany", async (req, res) => {
     try {

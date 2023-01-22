@@ -4,6 +4,7 @@ const { connection } = require("./config/db");
 const { userRouter } = require("./routes/User.route");
 const { productRouter } = require("./routes/Product.route");
 const { cartRouter } = require("./routes/Cart.route");
+const { Validator } = require("./middlewares/Validator.middleware");
 
 const app = express();
 app.use(cors({
@@ -11,6 +12,10 @@ app.use(cors({
 }));
 
 app.use(express.json());
+
+// Validation for all fields
+app.use(Validator);
+
 app.use("/users", userRouter);
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
