@@ -1,7 +1,7 @@
 # Steps and End-points:-
 
 ### Product end point:- 
-  - products?brand=Amul
+  - products?brand=
   - Add product:- `baseurl` + `/products/add`
 
   - Update product:- `baseurl` + `/products/update/:id`
@@ -12,7 +12,8 @@
   - Get products by a range of price:- `baseurl` + `/products?price_low=300&&price_high=700`
   - Get products by a range of Quantity:- `baseurl` + `/products/quantity?q_low=3&&q_high=7`
 
-  - Get products by any query:- `baseurl` + `/products/?brand=Milky Mist` 
+  - Get products by any query:- `baseurl` + `/products/?brand=Amul` 
+  - Get products by any query:- `baseurl` + `/products/?category=bakery` 
 
   - Get sorted products price in descending order:-  `baseurl` + `/products?sortBy=desc`
   - Get sorted products price in ascending order:-  `baseurl` + `/products?sortBy=asc`
