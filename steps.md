@@ -7,9 +7,9 @@
   - Get products:-  `baseurl` + `/products`
   - Get products by a range of price:- `baseurl` + `/products?price_low=300&&price_high=700`
   - Get products by any query:- `baseurl` + `/products/q?brand=Milky Mist`
-  - Get sorted products in descending order:-  `baseurl` + `products/q?sortBy=desc`
-  - Get sorted products in ascending order:-  `baseurl` + `products/q?sortBy=asc`
-  - Get products by Id: `baseurl` + `products/getById/:id`
+  - Get sorted products in descending order:-  `baseurl` + `/products/q?sortBy=desc`
+  - Get sorted products in ascending order:-  `baseurl` + `/products/q?sortBy=asc`
+  - Get products by Id: `baseurl` + `/products/getById/:id`
 
 
 ### User endpoints:-
