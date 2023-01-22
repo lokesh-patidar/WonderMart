@@ -85,6 +85,21 @@ productRouter.get("/q", async (req, res) => {
 });
 
 
+productRouter.patch("/update/:id", async (req, res) => {
+    const payload = req.body;
+    const id = req.params.id;
+
+    try {
+        await ProductModel.findByIdAndUpdate({ "_id": id }, payload);
+        res.send({ Message: "product Updated!" });
+    }
+    catch (error) {
+        console.log(err);
+        res.send({ Message: "Product can't be updated!" });
+    }
+});
+
+
 // validate users can do these operations only
 productRouter.use(AuthValidator);
 
@@ -129,21 +144,6 @@ productRouter.post("/add", async (req, res) => {
     } catch (err) {
         console.log(err);
         res.send({ Message: "Product can not be added!" });
-    }
-});
-
-
-productRouter.patch("/update/:id", async (req, res) => {
-    const payload = req.body;
-    const id = req.params.id;
-
-    try {
-        await ProductModel.findByIdAndUpdate({ "_id": id }, payload);
-        res.send({ Message: "product Updated!" });
-    }
-    catch (error) {
-        console.log(err);
-        res.send({ Message: "Product can't be updated!" });
     }
 });
 
