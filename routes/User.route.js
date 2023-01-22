@@ -23,15 +23,15 @@ userRouter.post("/login", async (req, res) => {
 
                     if (result) {
                         const token = jwt.sign({ userID: user._id, adminID: user.adminID }, process.env.key);
-                        res.send({ 
+                        res.send({
                             message: "Admin Login Successful",
-                            adminID: user.adminID, 
-                            userKey: user._id, 
-                            token 
+                            adminID: user.adminID,
+                            userKey: user._id,
+                            token
                         });
                     }
                     else {
-                        res.send("Wrong admin credential!");
+                        res.send({ Message: "Wrong admin credential!" });
                     }
                 });
             }
@@ -40,24 +40,24 @@ userRouter.post("/login", async (req, res) => {
 
                     if (result) {
                         const token = jwt.sign({ userID: user._id }, process.env.key);
-                        res.send({ 
-                            message: "User Login Successful", 
-                            userKey: user._id, 
-                            token 
+                        res.send({
+                            message: "User Login Successful",
+                            userKey: user._id,
+                            token
                         });
                     }
                     else {
-                        res.send("Wrong user credential!");
+                        res.send({ Message: "Wrong user credential!" });
                     }
                 });
             }
         }
         else {
-            res.send("Wrong credential!");
+            res.send({ Message: "Wrong credential!" });
         }
     }
     catch (err) {
-        res.send("Something went wrong!");
+        res.send({ Message: "Usen can not login!" });
         console.log(err);
     }
 });
@@ -77,17 +77,17 @@ userRouter.post("/admin/signup", async (req, res) => {
                 else {
                     let user = new UserModel({ username, email, password: hash, adminID });
                     await user.save();
-                    res.send("Admin Registered!");
+                    res.send({ Message: "Admin Registered Successfully!" });
                     console.log(user);
                 }
             });
         }
         else {
-            res.send("Admin already registered!");
+            res.send({ Message: "Admin already registered!" });
         }
     }
     catch (err) {
-        res.send("Admin Registration Failed!");
+        res.send({ Message: "Admin Registration Failed!" });
         console.log(err);
     }
 });
@@ -107,17 +107,17 @@ userRouter.post("/user/signup", async (req, res) => {
                 else {
                     let user = new UserModel({ username, email, password: hash });
                     await user.save();
-                    res.send("User Registered!");
+                    res.send({ Message: "User Registered Successfully!" });
                     console.log(user);
                 }
             });
         }
         else {
-            res.send("User already registered!");
+            res.send({ Message: "User already registered!" });
         }
     }
     catch (err) {
-        res.send("User Registration Failed!");
+        res.send({ Message: "User Registration Failed!" });
         console.log(err);
     }
 });
@@ -135,7 +135,7 @@ userRouter.get("/profile/:userKey", async (req, res) => {
         res.send(singleUser);
     }
     catch (err) {
-        res.send("Something went wrong!");
+        res.send({ Message: "Can not get user profile!" });
         console.log(err);
     }
 });
@@ -148,10 +148,9 @@ userRouter.get("/", async (req, res) => {
     try {
         let user = await UserModel.find();
         res.send(user);
-        console.log("data is there");
     }
     catch (err) {
-        res.send("Something went wrong!");
+        res.send({ Message: "Can not get users data!" });
         console.log(err);
     }
 });
@@ -160,11 +159,11 @@ userRouter.get("/", async (req, res) => {
 userRouter.delete("/deletemany", async (req, res) => {
     try {
         await UserModel.deleteMany();
-        res.send("All users deleted!");
+        res.send({ Message: "All users deleted successfully!" });
     }
     catch (err) {
         console.log(err);
-        res.send({ msg: "something went wrong" });
+        res.send({ Message: "Can't delete all users!" });
     }
 });
 
@@ -174,10 +173,10 @@ userRouter.patch("/update/:id", async (req, res) => {
     let payload = req.body;
     try {
         await UserModel.findByIdAndUpdate({ "_id": id }, payload);
-        res.send("User updated");
+        res.send({ Message: "User updated successfully!" });
     }
     catch (err) {
-        res.send("Something went wrong");
+        res.send({ Message: "User can'nt be updated!" });
         console.log(err);
     }
 });
@@ -187,10 +186,10 @@ userRouter.delete("/delete/:id", async (req, res) => {
     let id = req.params.id;
     try {
         await UserModel.findByIdAndDelete({ "_id": id });
-        res.send("User deleted");
+        res.send({ Message: "User deleted successfully!" });
     }
     catch (err) {
-        res.send("Something went wrong");
+        res.send({ Message: "User can'nt be deleted!" });
         console.log(err);
     }
 });

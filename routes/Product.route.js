@@ -14,7 +14,7 @@ productRouter.get("/", async (req, res) => {
         }
         catch (err) {
             console.log(err);
-            res.send({ "err": "Something went wrong" });
+            res.send({ Message: "Can't find products in given range!" });
         }
     }
     else {
@@ -24,10 +24,11 @@ productRouter.get("/", async (req, res) => {
         }
         catch (err) {
             console.log(err);
-            res.send({ "err": "Something went wrong" });
+            res.send({ Message: "Can't find products!" });
         }
     }
 });
+
 
 // Quantity range
 productRouter.get("/quantity", async (req, res) => {
@@ -40,11 +41,11 @@ productRouter.get("/quantity", async (req, res) => {
         }
         catch (err) {
             console.log(err);
-            res.send({ "err": "Something went wrong" });
+            res.send({ message: "Can't find products in given quantities range!" });
         }
     }
     else {
-        res.send({ "err": "Something went wrong" });
+        res.send({ message: "Something went wrong!" });
     }
 });
 
@@ -58,7 +59,7 @@ productRouter.get("/getById/:id", async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        res.send({ "err": "Something went wrong" })
+        res.send({ Message: "Can't find product item by given id!" });
     }
 });
 
@@ -66,18 +67,20 @@ productRouter.get("/getById/:id", async (req, res) => {
 // Sorting Asc or Desc by price
 productRouter.get("/q", async (req, res) => {
     let query = req.query;
+
     try {
         if (query.sortBy) {
             const sortedData = await ProductModel.find(query).sort({ price: query.sortBy });
             res.send(sortedData);
-        } else {
+        }
+        else {
             const data = await ProductModel.find(query);
             res.send(data);
         }
     }
     catch (err) {
         console.log(err);
-        res.send({ "err": "Something went wrong" })
+        res.send({ Message: "Can't sort products!" });
     }
 });
 
@@ -94,11 +97,11 @@ productRouter.post("/addmany", async (req, res) => {
     const payload = req.body;
     try {
         await ProductModel.insertMany(payload);
-        res.send("Products added!");
+        res.send({ Message: "All products added successfully!" });
         console.log(product);
     } catch (err) {
         console.log(err);
-        res.send({ msg: "something went wrong" });
+        res.send({ Message: "All products can't be added!" });
     }
 });
 
@@ -107,11 +110,11 @@ productRouter.post("/addmany", async (req, res) => {
 productRouter.delete("/deletemany", async (req, res) => {
     try {
         await ProductModel.deleteMany();
-        res.send("All Products deleted!");
+        res.send({ Message: "All Products deleted!" });
     }
     catch (err) {
         console.log(err);
-        res.send({ msg: "something went wrong" });
+        res.send({ Message: "All products can not be deleted!" });
     }
 });
 
@@ -121,11 +124,11 @@ productRouter.post("/add", async (req, res) => {
     try {
         const product = new ProductModel(payload);
         await product.save();
-        res.send("Product added!");
+        res.send({ Message: "Product added successfully!" });
         console.log(product);
     } catch (err) {
         console.log(err);
-        res.send({ msg: "something went wrong" });
+        res.send({ Message: "Product can not be added!" });
     }
 });
 
@@ -136,11 +139,11 @@ productRouter.patch("/update/:id", async (req, res) => {
 
     try {
         await ProductModel.findByIdAndUpdate({ "_id": id }, payload);
-        res.send("product Updated!");
+        res.send({ Message: "product Updated!" });
     }
     catch (error) {
         console.log(err);
-        res.send({ msg: "something went wrong" });
+        res.send({ message: "Product can't be updated!" });
     }
 });
 
@@ -150,10 +153,11 @@ productRouter.delete("/delete/:id", async (req, res) => {
 
     try {
         await ProductModel.findByIdAndDelete({ "_id": id });
-        res.send("Product Deleted!");
-    } catch (error) {
+        res.send("Product Deleted Successfully!");
+    }
+    catch (error) {
         console.log(err);
-        res.send({ msg: "something went wrong" });
+        res.send({ msg: "Product can't be deleted!" });
     }
 });
 

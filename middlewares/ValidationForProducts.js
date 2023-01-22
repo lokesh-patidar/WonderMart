@@ -6,15 +6,14 @@ const ValidationForProducts = (req, res, next) => {
     if (token) {
         const decoded = jwt.verify(token, process.env.key);
         if (decoded.adminID) {
-            console.log("adminid", decoded.adminID);
             next();
         }
         else {
-            res.send({ msg: "You are not admin!" });
+            res.send({ Message: "You are not an admin!" });
         }
     }
     else {
-        res.send("You are not admin!");
+        res.send({ Message: "You are not an admin!" });
     }
 };
 

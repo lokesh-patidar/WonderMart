@@ -1,5 +1,6 @@
 const express = require("express");
 const { AuthValidator } = require("../middlewares/Auth.middleware");
+const { ValidationForProducts } = require("../middlewares/ValidationForProducts");
 const { CartModel } = require("../models/Cart.model");
 const { ProductModel } = require("../models/Products.model");
 const cartRouter = express.Router();
@@ -19,7 +20,7 @@ cartRouter.get("/cartItems", async (req, res) => {
         }
         catch (err) {
             console.log(err);
-            res.send({ "err": "Something went wrong" });
+            res.send({ Message: "Can not find cart items in given range!" });
         }
     }
     else {
@@ -29,7 +30,7 @@ cartRouter.get("/cartItems", async (req, res) => {
         }
         catch (err) {
             console.log(err);
-            res.send({ "err": "Something went wrong" });
+            res.send({ Message: "Can not find products!" });
         }
     }
 });
@@ -39,17 +40,17 @@ cartRouter.get("/cartItems", async (req, res) => {
 cartRouter.get("/q", async (req, res) => {
     let query = req.query;
     try {
-        if(query.sortBy){
+        if (query.sortBy) {
             const sortedData = await CartModel.find(query).sort({ price: query.sortBy });
             res.send(sortedData);
-        }else{
+        } else {
             const data = await CartModel.find(query);
             res.send(data);
         }
     }
     catch (err) {
         console.log(err);
-        res.send({ "err": "Something went wrong" })
+        res.send({ Message: "Can't sort cart items!" });
     }
 });
 
@@ -74,11 +75,11 @@ cartRouter.post("/addcartItem/:id", async (req, res) => {
             quantity: item.quantity
         });
         await cartItem.save();
-        res.send("Item added to cart!");
+        res.send({ Message: "Item added to cart successfully!" });
     }
     catch (err) {
         console.log(err);
-        res.send({ msg: "something went wrong" });
+        res.send({ Message: "Item can't be added to cart!" });
     }
 });
 
@@ -88,26 +89,55 @@ cartRouter.delete("/delete/:id", async (req, res) => {
 
     try {
         await CartModel.findByIdAndDelete({ "_id": id });
-        res.send("Cart Item Deleted!");
+        res.send({ Message: "Cart Item Deleted!" });
     } catch (error) {
         console.log(err);
-        res.send({ msg: "something went wrong" });
+        res.send({ Message: "Can not delete cart item!" });
     }
 });
 
-cartRouter.patch("/update/:id", async (req,res) => {
+cartRouter.patch("/update/:id", async (req, res) => {
     const payload = req.body;
     const id = req.params.id;
 
     try {
         await CartModel.findByIdAndUpdate({ "_id": id }, payload);
-        res.send("Quantity Updated!");
+        res.send({ Message: "Product Quantity Updated!" });
     }
     catch (error) {
         console.log(err);
-        res.send({ msg: "something went wrong" });
+        res.send({ Message: "Can not updated quantity of product!" });
     }
-})
+});
+
+// only admin can add many cart items
+cartRouter.use(ValidationForProducts);
+
+// Insert many
+cartRouter.post("/addmany", async (req, res) => {
+    const payload = req.body;
+    try {
+        await CartModel.insertMany(payload);
+        res.send({ Message: "All Products added to cart!" });
+    }
+    catch (err) {
+        console.log(err);
+        res.send({ Message: "Can not add all products to cart!" });
+    }
+});
+
+
+// Delete all cart items
+cartRouter.delete("/deletemany", async (req, res) => {
+    try {
+        await CartModel.deleteMany();
+        res.send({ Message: "All Cart Items deleted!" });
+    }
+    catch (err) {
+        console.log(err);
+        res.send({ Message: "Can not delete all cart items something went wrong!" });
+    }
+});
 
 
 module.exports = { cartRouter };

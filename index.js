@@ -7,29 +7,26 @@ const { cartRouter } = require("./routes/Cart.route");
 const { Validator } = require("./middlewares/Validator.middleware");
 
 const app = express();
+app.use(express.json());
 app.use(cors({
     origin: "*"
 }));
 
-app.use(express.json());
-
-// Validation for all fields
-
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
 
+// Validation for all fields
 app.use(Validator);
 app.use("/users", userRouter);
-
 
 app.listen(process.env.port, async () => {
     try {
         await connection;
-        console.log("Connected to the Database");
+        console.log("Connected to the Database of Wondermart");
     }
     catch (err) {
         console.log(err);
         console.log("Connection Failed!");
     }
-    console.log(`Running at port ${process.env.port}`);
+    console.log(`Server is running...`);
 });
