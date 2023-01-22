@@ -74,9 +74,10 @@ productRouter.get("/q", async (req, res) => {
             res.send(sortedData);
         }
         else if(query === "wondermart") {
-            const data = await ProductModel.find(query);
+            const data = await ProductModel.find();
             res.send(data);
-        }else{
+        }
+        else{
             const data = await ProductModel.find(query);
             res.send(data);
         }
