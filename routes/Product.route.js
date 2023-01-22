@@ -24,7 +24,7 @@ productRouter.get("/", async (req, res) => {
             const products = await ProductModel.find({ brand: query.brand });
             res.send(products);
         }
-        if (query.sortBy) {
+        else if (query.sortBy) {
             const sortedData = await ProductModel.find(query).sort({ price: query.sortBy });
             res.send(sortedData);
         }
@@ -36,38 +36,9 @@ productRouter.get("/", async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        res.send({ Message: "Can't find products in given range!" });
+        res.send({ Message: "Can't find products!" });
     }
 });
-
-
-
-
-
-// productRouter.get("/", async (req, res) => {
-//     const price_low = req.query.price_low;
-//     const price_high = req.query.price_high;
-//     if (price_low && price_high) {
-//         try {
-//             let products = await ProductModel.find({ $and: [{ price: { $gt: price_low } }, { price: { $lt: price_high } }] });
-//             res.send(products);
-//         }
-//         catch (err) {
-//             console.log(err);
-//             res.send({ Message: "Can't find products in given range!" });
-//         }
-//     }
-//     else {
-//         try {
-//             let data = await ProductModel.find();
-//             res.send(data);
-//         }
-//         catch (err) {
-//             console.log(err);
-//             res.send({ Message: "Can't find products!" });
-//         }
-//     }
-// });
 
 
 // Quantity range
@@ -102,24 +73,6 @@ productRouter.get("/getById/:id", async (req, res) => {
         res.send({ Message: "Can't find product item by given id!" });
     }
 });
-
-
-// Sorting Asc or Desc by price
-// productRouter.get("/q", async (req, res) => {
-//     let query = req.query;
-//     console.log(query);
-//     try {
-        
-//         else{
-//             const data = await ProductModel.find(query);
-//             res.send(data);
-//         }
-//     }
-//     catch (err) {
-//         console.log(err);
-//         res.send({ Message: "Can't sort products!" });
-//     }
-// });
 
 
 productRouter.patch("/update/:id", async (req, res) => {

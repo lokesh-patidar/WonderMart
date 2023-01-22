@@ -12,7 +12,7 @@
   - Get products by a range of price:- `baseurl` + `/products?price_low=300&&price_high=700`
   - Get products by a range of Quantity:- `baseurl` + `/products/quantity?q_low=3&&q_high=7`
 
-  - Get products by any query:- `baseurl` + `/products/q?brand=Milky Mist` 
+  - Get products by any query:- `baseurl` + `/products/?brand=Milky Mist` 
 
   - Get sorted products price in descending order:-  `baseurl` + `/products?sortBy=desc`
   - Get sorted products price in ascending order:-  `baseurl` + `/products?sortBy=asc`
