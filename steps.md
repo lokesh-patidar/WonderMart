@@ -1,6 +1,7 @@
 # Steps and End-points:-
 
-### Product end point:-
+### Product end point:- 
+  - products?brand=Amul
   - Add product:- `baseurl` + `/products/add`
 
   - Update product:- `baseurl` + `/products/update/:id`
@@ -13,8 +14,8 @@
 
   - Get products by any query:- `baseurl` + `/products/q?brand=Milky Mist` 
 
-  - Get sorted products price in descending order:-  `baseurl` + `/products/q?sortBy=desc`
-  - Get sorted products price in ascending order:-  `baseurl` + `/products/q?sortBy=asc`
+  - Get sorted products price in descending order:-  `baseurl` + `/products?sortBy=desc`
+  - Get sorted products price in ascending order:-  `baseurl` + `/products?sortBy=asc`
 
   - Get products by Id: `baseurl` + `/products/getById/:id`
 

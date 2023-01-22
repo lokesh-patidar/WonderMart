@@ -8,7 +8,6 @@ const productRouter = express.Router();
 productRouter.get("/", async (req, res) => {
     let query = req.query;
     console.log(query)
-    // res.send(query);
     const price_low = req.query.price_low;
     const price_high = req.query.price_high;
 
@@ -24,7 +23,12 @@ productRouter.get("/", async (req, res) => {
         else if(query.brand){
             const products = await ProductModel.find({ brand: query.brand });
             res.send(products);
-        }else{
+        }
+        if (query.sortBy) {
+            const sortedData = await ProductModel.find(query).sort({ price: query.sortBy });
+            res.send(sortedData);
+        }
+        else{
             const products = await ProductModel.find();
             res.send(products);
         }
@@ -105,10 +109,7 @@ productRouter.get("/getById/:id", async (req, res) => {
 //     let query = req.query;
 //     console.log(query);
 //     try {
-//         if (query.sortBy) {
-//             const sortedData = await ProductModel.find(query).sort({ price: query.sortBy });
-//             res.send(sortedData);
-//         }
+        
 //         else{
 //             const data = await ProductModel.find(query);
 //             res.send(data);
