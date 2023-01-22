@@ -143,7 +143,7 @@ productRouter.patch("/update/:id", async (req, res) => {
     }
     catch (error) {
         console.log(err);
-        res.send({ message: "Product can't be updated!" });
+        res.send({ Message: "Product can't be updated!" });
     }
 });
 

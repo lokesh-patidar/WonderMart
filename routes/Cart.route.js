@@ -106,7 +106,7 @@ cartRouter.patch("/update/:id", async (req, res) => {
     }
     catch (error) {
         console.log(err);
-        res.send({ Message: "Can not updated quantity of product!" });
+        res.send({ Message: "Can not update quantity of product!" });
     }
 });
 
