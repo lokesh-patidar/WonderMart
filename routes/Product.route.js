@@ -78,7 +78,7 @@ productRouter.get("/q", async (req, res) => {
             res.send(data);
         }
         else{
-            const data = await ProductModel.find(query);
+            const data = await ProductModel.find();
             res.send(data);
         }
     }
