@@ -14,11 +14,12 @@ app.use(cors({
 app.use(express.json());
 
 // Validation for all fields
-app.use(Validator);
 
-app.use("/users", userRouter);
 app.use("/products", productRouter);
 app.use("/cart", cartRouter);
+
+app.use(Validator);
+app.use("/users", userRouter);
 
 
 app.listen(process.env.port, async () => {
