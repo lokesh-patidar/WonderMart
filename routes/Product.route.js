@@ -4,7 +4,6 @@ const { ValidationForProducts } = require("../middlewares/ValidationForProducts"
 const { ProductModel } = require("../models/Products.model");
 const productRouter = express.Router();
 
-
 productRouter.get("/", async (req, res) => {
     const price_low = req.query.price_low;
     const price_high = req.query.price_high;
@@ -30,9 +29,25 @@ productRouter.get("/", async (req, res) => {
     }
 });
 
+// Quantity range
+productRouter.get("/quantity", async (req, res) => {
+    const q_low = req.query.q_low;
+    const q_high = req.query.q_high;
+    if (q_low && q_high) {
+        try {
+            let products = await ProductModel.find({ $and: [{ quantity: { $gt: q_low } }, { quantity: { $lt: q_high } }] });
+            res.send(products);
+        }
+        catch (err) {
+            console.log(err);
+            res.send({ "err": "Something went wrong" });
+        }
+    }
+    else {
+        res.send({ "err": "Something went wrong" });
+    }
+});
 
-// validate users can do these operations only
-productRouter.use(AuthValidator);
 
 // get by ID
 productRouter.get("/getById/:id", async (req, res) => {
@@ -48,7 +63,7 @@ productRouter.get("/getById/:id", async (req, res) => {
 });
 
 
-// Sorting Asc or Desc
+// Sorting Asc or Desc by price
 productRouter.get("/q", async (req, res) => {
     let query = req.query;
     try {
@@ -66,6 +81,9 @@ productRouter.get("/q", async (req, res) => {
     }
 });
 
+
+// validate users can do these operations only
+productRouter.use(AuthValidator);
 
 // Validation these operation could only be done by admin only
 productRouter.use(ValidationForProducts);
